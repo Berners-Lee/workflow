@@ -1,3 +1,6 @@
+var usersTemplate = Handlebars.compile($('#users').html());
+var data = {};
+
 var people = {
 	ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
@@ -5,7 +8,7 @@ var people = {
     }).fail(function(jqxhr, status, error) {
       cb({jqxher: jqxhr, status: status, error: error});
     });
-  	},	
+  	},
 
   	getPeople: function (callback) {
     this.ajax({
@@ -37,8 +40,17 @@ $(function() {
 			};
 			if (data){
 				console.log(data);
+        data = data;
+        var display = function(){
+        var myHTML = usersTemplate({users: data});
+        $("#display").append(myHTML);
+      };
+      display();
+
+      };
+
 			}
-		});
+		);
 
 });
 });
